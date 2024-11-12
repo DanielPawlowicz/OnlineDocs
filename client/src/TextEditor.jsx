@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
+import "./styles.css"
 
 const TextEditor = () => {
 
@@ -14,7 +15,7 @@ const TextEditor = () => {
 
     }, [])
 
-    return <div id="container" ref={wrapperRef}></div>
+    return <div className="container" ref={wrapperRef}></div>
   
 }
 
