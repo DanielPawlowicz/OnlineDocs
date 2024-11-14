@@ -31,6 +31,19 @@ const TextEditor = () => {
     }, [])
 
     useEffect(() => {
+        if (socket == null || quill == null) return
+        const handler = delta => {
+            quill.updateContents(delta)
+        }
+
+        socket.on('receive-changes', handler)
+
+        return () => {
+            socket.off('receive-changes', handler)
+        }
+    }, [socket, quill])
+
+    useEffect(() => {
         if(socket == null || quill == null) return
         const handler = (delta, oldDelta, source) => {
             if (source !== 'user') return
